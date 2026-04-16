@@ -80,7 +80,8 @@
     "claude-md-management@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true
   },
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
+  "skipAutoPermissionPrompt": true,
   "autoMode": {
     "allow": [
       "Standard development tools: compilers, linters, formatters, test runners, build tools",
