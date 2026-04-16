@@ -4,6 +4,10 @@ Parabola team dotfiles — terminal and [Claude Code](https://docs.anthropic.com
 
 ## Getting started
 
+See **[SETUP.md](SETUP.md)** for the full step-by-step guide (Homebrew, Oh My Zsh, Claude Code install, Codespaces config, etc.).
+
+Quick version:
+
 **1. Create your own copy**
 
 Use the GitHub "Use this template" button to create a new repo named `dotfiles` under your account. Or fork it — either works.
