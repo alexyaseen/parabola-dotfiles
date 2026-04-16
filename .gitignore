@@ -1,0 +1,9 @@
+.DS_Store
+
+# Local-only Claude Code overrides (machine-specific)
+.claude/settings.local.json
+
+# Externally-installed skills (not hand-written)
+.claude/skills/agent-browser
+.claude/skills/dogfood
+.claude/skills/vercel-sandbox
