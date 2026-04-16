@@ -4,78 +4,45 @@ Parabola team dotfiles — terminal and [Claude Code](https://docs.anthropic.com
 
 ## Getting started
 
-See **[SETUP.md](SETUP.md)** for the full step-by-step guide (Homebrew, Oh My Zsh, Claude Code install, Codespaces config, etc.).
-
-Quick version:
-
 **1. Create your own copy**
 
-Use the GitHub "Use this template" button to create a new repo named `dotfiles` under your account. Or fork it — either works.
+Use the **"Use this template"** button on GitHub to create a new repo named `dotfiles` under your account (Public visibility required for Codespaces).
 
-**2. Customize the two personal files**
-
-```bash
-# Fill in your name and email
-.gitconfig
-
-# Add any personal aliases or shortcuts
-.zshrc
-```
-
-Specifically in `.gitconfig`, replace:
-```
-name = YOUR_NAME
-email = YOUR_EMAIL@parabola.io
-```
-
-**3. Enable Codespaces**
-
-Go to [github.com/settings/codespaces](https://github.com/settings/codespaces), check **Automatically install dotfiles**, and point it at your `dotfiles` repo. Every new Codespace will run `install.sh` automatically on creation.
-
-**4. Local Mac setup (optional)**
+**2. Clone it and fill in your identity**
 
 ```bash
 git clone git@github.com:<your-username>/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-./install.sh
 ```
 
-Then ask Claude Code to configure your terminal:
+Edit `.gitconfig` and replace `YOUR_NAME` and `YOUR_EMAIL` with yours.
+
+**3. Run setup**
+
+Open Claude Code and paste:
 
 ```
-Read ~/dotfiles/TERMINAL.md and configure this terminal to match.
+Read ~/dotfiles/SETUP.md and set up this machine.
 ```
+
+The agent handles the rest. It will tell you the two steps that require your input (keybindings, Codespaces).
 
 ## What's synced
 
-### Terminal
 | File | Purpose |
 |---|---|
-| `.zshrc` | Zsh config — Oh My Zsh, agnoster theme, plugins, aliases |
-| `.zprofile` | Login shell setup (Homebrew) |
+| `.zshrc` | Zsh — Oh My Zsh, agnoster, plugins, aliases |
+| `.zprofile` | Login shell (Homebrew) |
 | `.gitconfig` | Git user, delta pager, LFS |
-| `ghostty/config` | Ghostty config (macOS) — Solarized Dark, transparent titlebar |
-| `TERMINAL.md` | Full terminal spec — read by Claude Code to configure any environment |
-
-### Claude Code
-| File | Purpose |
-|---|---|
+| `ghostty/config` | Ghostty — Solarized Dark, transparent titlebar |
 | `.claude/settings.json` | Permissions, plugins, model, effort level |
-| `.claude/CLAUDE.md` | Global instructions loaded in every conversation |
+| `.claude/CLAUDE.md` | Global Claude Code instructions |
 
-## Syncing changes
+## Keeping in sync
 
-`install.sh` creates symlinks on Mac, so edits in `~/dotfiles` are live immediately. To push changes:
+On Mac, `install.sh` creates symlinks so edits in `~/dotfiles` are live immediately. Push changes with:
 
 ```bash
-cd ~/dotfiles
-git add -A && git commit -m "update settings" && git push
+cd ~/dotfiles && git add -A && git commit -m "update" && git push
 ```
 
-On another machine or Codespace, the next `git pull` picks them up automatically (the `.zshrc` auto-pulls in the background on each shell start).
-
-## What's NOT synced
-
-- **Credentials** (`credentials.json`) — auth tokens, never commit these
-- **Sessions, plans, history** — ephemeral per-conversation state
-- **Plugins cache** — runtime data; plugin choices live in `settings.json` under `enabledPlugins`
+Your shell silently auto-pulls the repo on each terminal start, so all machines stay in sync.
