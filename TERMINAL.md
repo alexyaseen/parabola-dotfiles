@@ -9,7 +9,7 @@ The following files are in this repo and should be symlinked or copied into `~`:
 - **`.zshrc`** — Oh My Zsh, agnoster theme, plugins, aliases, history settings, fzf/nvm/bun config
 - **`.zprofile`** — Homebrew shellenv
 - **`.gitconfig`** — User info, delta pager, LFS
-- **`ghostty/config`** (macOS, optional) — if you use [Ghostty](https://ghostty.org/), symlink to `~/.config/ghostty/config`. Handles colors, transparent titlebar, and session restore. Ghostty's bundled default font is used instead of MesloLGS.
+- **`ghostty/config`** (macOS, optional) — if you use [Ghostty](https://ghostty.org/), symlink to `~/.config/ghostty/config`. Handles colors, transparent titlebar, session restore, and SSH shell integration (auto-installs `xterm-ghostty` terminfo on remote hosts like codespaces). Ghostty's bundled default font is used instead of MesloLGS.
 
 Running `install.sh` handles all of the above automatically.
 

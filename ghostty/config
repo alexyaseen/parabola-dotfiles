@@ -24,6 +24,7 @@ palette = 15=#fdf6e3
 
 # Shell
 command = /bin/zsh
+shell-integration-features = ssh-env,ssh-terminfo
 
 # macOS
 macos-option-as-alt = true

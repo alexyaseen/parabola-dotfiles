@@ -33,7 +33,7 @@ The agent handles the rest. It will tell you the two steps that require your inp
 | `.zshrc` | Zsh — Oh My Zsh, agnoster, plugins, aliases |
 | `.zprofile` | Login shell (Homebrew) |
 | `.gitconfig` | Git user, delta pager, LFS |
-| `ghostty/config` | Ghostty — Solarized Dark, transparent titlebar |
+| `ghostty/config` | Ghostty — Solarized Dark, transparent titlebar, SSH shell integration |
 | `.claude/settings.json` | Permissions, plugins, model, effort level |
 | `.claude/CLAUDE.md` | Global Claude Code instructions |
 
