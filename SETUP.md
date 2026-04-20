@@ -1,51 +1,36 @@
 # Machine Setup
 
-Read this entire file, then set up this machine. The dotfiles repo should already be cloned at `~/dotfiles` before you start.
+The dotfiles repo should already be cloned at `~/dotfiles` before you start.
 
 ## Steps
 
-**1. Homebrew (macOS)**
-
-If not installed:
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-**2. Oh My Zsh**
-
-If not installed:
-```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
-
-**3. Run install.sh**
+**1. Run `install.sh`**
 
 ```bash
 cd ~/dotfiles && ./install.sh
 ```
 
-This symlinks Claude Code config, shell dotfiles, and Ghostty config, and installs CLI tools via Homebrew.
+It bootstraps Homebrew + Oh My Zsh if they're missing, installs all the CLI tools (`gh`, `ripgrep`, `fd`, etc.), installs Claude Code via npm, and symlinks every config. Safe to re-run.
 
-**4. Claude Code**
-
-If not installed:
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-Then launch and log in: `claude`
-
-**5. Claude Code skills**
+**2. Authenticate `gh` with the Codespaces scope**
 
 ```bash
-npx skills install agent-browser
+gh auth login -s codespace
 ```
 
-**6. Terminal**
+Required for the `csh` wrapper (Codespaces SSH + image paste). `install.sh` prompts you to run this at the end if it detects the scope is missing.
 
-Read `~/dotfiles/TERMINAL.md` and configure this terminal to match — font, colors, shell framework, and CLI tools.
+**3. Launch Claude Code**
+
+```bash
+claude
+```
+
+It will open a browser for first-time login.
+
+**4. Terminal setup**
+
+Read `~/dotfiles/TERMINAL.md` and configure this terminal to match — font, colors, and keybindings.
 
 ## Steps requiring human action
 
@@ -53,4 +38,4 @@ These cannot be done by an agent — tell the user:
 
 - **`.gitconfig`** — fill in their name and email (replace `YOUR_NAME` and `YOUR_EMAIL`)
 - **Keybindings** — run `/terminal-setup` inside Claude Code to configure Shift+Enter and other shortcuts
-- **Codespaces** — go to [github.com/settings/codespaces](https://github.com/settings/codespaces), enable "Automatically install dotfiles", select their `dotfiles` repo
+- **Codespaces dotfiles integration** — go to [github.com/settings/codespaces](https://github.com/settings/codespaces), enable "Automatically install dotfiles", select their `dotfiles` repo

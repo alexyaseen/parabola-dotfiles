@@ -37,5 +37,30 @@ if command -v zoxide &>/dev/null; then
     eval "$(zoxide init zsh)"
 fi
 
+# --- Image paste from the Mac clipboard ---
+# `pi` fetches the current Mac clipboard image via a reverse SSH tunnel set up
+# by the `csh` wrapper on the Mac side, saves it to $CS_PASTE_DIR (default
+# /workspaces/parabola/.pasted), and echoes the path. Select the path with
+# your mouse or terminal shortcut to use it as an @-reference in Claude.
+pi() {
+    local dir="${CS_PASTE_DIR:-/workspaces/parabola/.pasted}"
+    mkdir -p "$dir"
+    local path="$dir/clip-$(date +%Y%m%d-%H%M%S).png"
+    local code
+    code=$(curl -s -o "$path" -w '%{http_code}' --max-time 3 http://localhost:9876/ 2>/dev/null)
+
+    if [[ "$code" == "200" && -s "$path" ]]; then
+        echo "$path"
+        return 0
+    fi
+    rm -f "$path"
+    case "$code" in
+        204) echo "no image on Mac clipboard" >&2 ;;
+        000|"") echo "Mac clipboard server unreachable — did you ssh via 'csh'?" >&2 ;;
+        *) echo "clipboard server returned HTTP $code" >&2 ;;
+    esac
+    return 1
+}
+
 # --- Auto-pull dotfiles in background ---
 [[ -d "$_dotfiles_dir" ]] && git -C "$_dotfiles_dir" pull --quiet &>/dev/null &
