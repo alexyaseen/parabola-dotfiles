@@ -131,7 +131,7 @@ if [ "$CODESPACES" != "true" ]; then
     fi
 fi
 
-echo "To install Claude Code skills (agent-browser, etc.):"
+echo "To install the agent-browser discovery skill (CLI already installed):"
 echo ""
-echo "  npx skills install agent-browser"
+echo "  npx skills add vercel-labs/agent-browser"
 echo ""
