@@ -53,7 +53,8 @@ EOF
     echo "Shell: codespace.zshrc sourced from existing .zshrc."
 else
     # macOS: install CLI tools via Homebrew
-    brew install ripgrep fd fzf bat eza thefuck zoxide git-delta agent-browser
+    brew install ripgrep fd fzf bat eza thefuck zoxide git-delta
+    command -v agent-browser >/dev/null 2>&1 || brew install agent-browser
 
     # macOS: symlink all shell dotfiles
     ln -sf "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
